@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys
 
 status_codes_dict = {'200': 0, '301': 0, '400': 0, '401': 0, '403': 0,
