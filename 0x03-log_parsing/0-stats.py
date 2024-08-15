@@ -4,8 +4,8 @@ import sys
 status_codes_dict = {'200': 0, '301': 0, '400': 0, '401': 0, '403': 0,
                      '404': 0, '405': 0, '500': 0}
 
-total_size = 0
-count = 0
+size = 0
+line_count = 0
 
 try:
     for line in sys.stdin:
@@ -18,13 +18,13 @@ try:
             if status_code in status_codes_dict.keys():
                 status_codes_dict[status_code] += 1
 
-            total_size += file_size
+            size += file_size
 
-            count += 1
+            line_count += 1
 
-        if count == 10:
-            count = 0
-            print('File size: {}'.format(total_size))
+        if line_count == 10:
+            line_count = 0
+            print('File size: {}'.format(size))
 
             for key, value in sorted(status_codes_dict.items()):
                 if value != 0:
@@ -34,7 +34,7 @@ except Exception as err:
     print(err)
 
 finally:
-    print('File size: {}'.format(total_size))
+    print('File size: {}'.format(size))
     for key, value in sorted(status_codes_dict.items()):
         if value != 0:
             print('{}: {}'.format(key, value))
